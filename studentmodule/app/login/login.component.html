@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+<body style="height:100px">
+
+<div class="container-fluid" style="margin-top:250px">
+<h3>Student Login</h3>
+<form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+<div class="form-group" >
+<label>Registered Id</label>
+<input type="text" formControlName="id"  class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.id.errors }" placeholder=" "/>
+<div *ngIf="submitted && fval.id.errors" class="invalid-feedback">
+<!--   <div *ngIf="fval.id.errors.required">Email is required</div>
+<div *ngIf="fval.id.errors.email">Enter valid id</div>
+-->
+</div>
+</div>
+<div class="form-group">
+<label>Password</label><br>
+<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder=" " />
+<div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
+<!--<div *ngIf="fval.password.errors.required">Password is required</div> -->
+</div>
+</div>
+<div class="form-group">
+<button [disabled]="loading" class="btn btn-primary">
+<span *ngIf="loading" class="spinner-border spinner-border-sm mr-1">
+</span>
+Login
+</button>
+</div>
+</form>
+</div>
+</body>
+</html>
+

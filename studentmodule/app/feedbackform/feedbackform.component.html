@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</head>
+<body style="height:600px">
+ <button type="button" *ngIf="currentUser" class="btn btn-info" style="cursor:pointer" (click)="logout()">Logout</button>
+<div class="container">
+<router-outlet></router-outlet>
+</div>
+<p>Welcome!!<br/>
+Your feedback is invaluable for us !
+<br>
+It helps us measure and improve our training effectiveness to give you the best in terms of Quality!!
+<br>
+Please fill up the form frankly and completely. Please indicate your opinion by rating (1-Poor, 2-Average,  3-Good, 4-Very Good, 5-Outstanding) where necessary, keeping in mind the response interpretation.
+<br>
+Before you begin, please go through the form fully and clarify any doubts with your feedback co-ordinator.</p>
+<div class="card my-5">
+<div class="card-body">
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+<div class="form-group">
+<h5>Student Id:{{currentUser.id}}</h5>
+<h5>Student Name: {{currentUser.name}}</h5>
+<br/>
+<div class="container">
+<table class="table table-bordered table-striped">
+<!-- <thead class="thead-dark">-->
+<!--<tr>
+<th scope="col">Question ID</th>
+<th scope="col">Questions</th>
+<th scope="col">Options</th>
+</tr>
+<tbody>-->
+<tr *ngFor="let admin of feedback">
+<h6> Question {{ admin.id }} . {{ admin.questions }}</h6>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;
+<label><input type="radio" [checked]="arr[admin.id]" class="from-control"  name="option{{admin.id}}" [(ngModel)]="arr[admin.id]" value="poor"/>1</label> 
+<label><input type="radio" [checked]="arr[admin.id]" class="from-control"  name="option{{admin.id}}" [(ngModel)]="arr[admin.id]" value="Average"/>2</label>
+<label><input type="radio" [checked]="arr[admin.id]" class="from-control"  name="option{{admin.id}}" [(ngModel)]="arr[admin.id]" value="Good"/>3</label>
+<label><input type="radio" [checked]="arr[admin.id]" class="from-control"  name="option{{admin.id}}" [(ngModel)]="arr[admin.id]" value="Very Good"/>4</label>
+<label><input type="radio" [checked]="arr[admin.id]" class="from-control"  name="option{{admin.id}}" [(ngModel)]="arr[admin.id]" value="Outstanding"/>5<br/></label>
+
+<!--  <div *ngIf="f.options.touched && f.options.invalid" class="alert alert-danger">
+                <div *ngIf="f.options.errors.required">*</div>
+            </div>-->
+</tr>
+</table>
+<button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</body>
+</html>
